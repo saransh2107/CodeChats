@@ -1,0 +1,18 @@
+{
+  "name": "codechats",
+  "version": "1.0.0",
+  "description": "Social Media Website For Coders",
+  "main": "index.js",
+  "scripts": {
+    "start":"nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "social"
+  ],
+  "author": "Saransh Batham",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
