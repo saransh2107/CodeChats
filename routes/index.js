@@ -11,8 +11,12 @@ const homeController=require('../controllers/home_controller');
 //Creating a route for home
 router.get('/',homeController.home);
 
-//Creating a route for profile
-router.get('/profile',homeController.profile);
+// //Creating a route for profile:testing
+// router.get('/profile',homeController.profile);
+
+router.use('/users',require('./users'))
+
+
 
 //exporting the Router module so that it is available to index.js
 module.exports=router;
