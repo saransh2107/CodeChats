@@ -11,4 +11,4 @@ module.exports.home=function(req,res){
 //Creating a controller for the /profile
 // module.exports.profile=function(req,res){
 //     return res.end('<p>Testing the controller</p>')
-// }
+// }//

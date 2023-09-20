@@ -5,6 +5,12 @@
     <title><%= title %></title>
 </head>
 <body>
-    <h1>Home Page of  <%= title %></h1>  
+
+    <%- include('_header'); %>
+
+    <%- body %>
+
+    <%- include('_footer'); %>
+    
 </body>
 </html>
