@@ -1,0 +1,32 @@
+.navbar {
+  display: flex;
+  justify-content: flex-start;
+  background-color: black; }
+
+.right {
+  display: flex;
+  order: 1 !important; }
+
+.left {
+  display: flex;
+  order: 3 !important;
+  margin-left: auto; }
+
+span {
+  margin: 10px;
+  margin-left: 10px; }
+
+span a {
+  color: white;
+  text-decoration: none; }
+
+span a:hover {
+  color: red; }
+
+.right a {
+  margin: 10px;
+  font-size: 20px;
+  color: white; }
+
+.right a:hover {
+  color: red; }
