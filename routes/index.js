@@ -20,7 +20,7 @@ router.use('/users',require('./users'))
 //router.use('/routerName,require('/routerfile'))
 router.use('/posts',require('./posts'))
 
-
+router.use('/comments',require('./comments'))
 
 //exporting the Router module so that it is available to index.js
 module.exports=router;
