@@ -1,4 +1,58 @@
-body {
+#home-container {
+  display: flex; }
+  #home-container #feed-posts {
+    width: 70%;
+    padding: 10px; }
+  #home-container #user-friends {
+    width: 30%;
+    padding: 10px;
+    border-left: 1px solid lightgray;
+    height: auto; }
+
+li {
+  list-style-type: none;
+  margin-left: 0; }
+
+.post-container {
+  width: 600px;
+  margin: 20px auto;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff; }
+
+.post-header {
+  padding: 10px;
+  border-bottom: 1px solid #ccc; }
+
+.post-header img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px; }
+
+.post-header h4 {
   margin: 0;
-  background-color: yellow;
-  height: auto; }
+  font-size: 16px;
+  font-weight: bold; }
+
+.post-content {
+  padding: 10px; }
+
+.post-content p {
+  margin: 0;
+  font-size: 14px; }
+
+.post-actions {
+  padding: 10px;
+  border-top: 1px solid #ccc; }
+
+.post-actions button {
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 20px; }
+
+.post-actions button:hover {
+  text-decoration: underline; }

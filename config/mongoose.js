@@ -9,6 +9,7 @@ db.on('error',console.error.bind(console,"Error connecting to DB"));
 
 //up and runnning
 db.once('open',function(){
-    console.log("Successfully connected to DB")
+    console.log("Welcome Saransh")
+    console.log("Successfully connected to DB::Atlas")
 })
 module.exports=db;

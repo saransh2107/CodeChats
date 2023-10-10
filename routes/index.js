@@ -22,6 +22,8 @@ router.use('/posts',require('./posts'))
 
 router.use('/comments',require('./comments'))
 
+router.use('/api',require('./api'));
+
 //exporting the Router module so that it is available to index.js
 module.exports=router;
 

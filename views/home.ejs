@@ -1,77 +1,44 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-</head>
-<body>
-    <h1>Home Page of  <%= title %></h1>  
-
-    <section id="feed-posts">
-        <h4>Posts</h4>
-
-        <%if (locals.user) {%>
-
-        <form action="/posts/create" id="new-post-form" method="POST">
-            <textarea name="content" cols="30" rows="3" placeholder="Express your thoughts"></textarea>
-            <input type="submit" value="Post">
-        </form>
-        <% } %>
 
 
 
-        <div id="post-list-container">
-            <ul>
-               <% for(post of posts) {%>
-                
-                <li>
-                    
-                    <p>
-                        <%= post.content%>
-                        <br>
-                        <small>
-                            <%= post.user.name %>
-                        </small>
-                    </p>
-                    <div class="post-comments">
-                        <%if(locals.user) { %>
-                            <form action="/comments/create" method="Post">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <title>
+        <%= title %>
+    </title>
+    <div id="home-container">
+        <section id="feed-posts">
+            <h4>Posts</h4>
 
-                                <input type="text" name="comment" placeholder="Type your comment">
-                                <input type="hidden" name="post" value="<%=post._id%>">
-                                <input type="submit" value="Add Comment">
+            <%if (locals.user) {%>
 
-                            </form> 
-
-
-
-
-                            <%}%>
-
-                            <div class="post-comments-list">
-                                <ul id="post-comments-<%=post._id%>">
-                                    <% for(comment of post.comments) {%>
-
-                                        <p>
-                                            <%=comment.content%>
-                                            <br>
-                                            <small><%=comment.user.name%></small>
-                                        </p>
-
-
+                <form action="/posts/create" id="new-post-form" method="POST">
+                    <textarea name="content" cols="30" rows="3" placeholder="Express your thoughts"></textarea>
+                    <input type="submit" value="Post">
+                </form>
+                <% } %>
+                   <div class="post-container">
+                        <ul>
+                            <% for(post of posts) {%>
+                                <%-include('_post')-%>
                                     <%}%>
-                                </ul>
-                            </div>
+                        </ul>
                     </div>
-                   
-                </li>
+
+
+        </section>
+        <section id="user-friends">
+            <h4>Friends</h4>
+
+            <%for(u of all_users) { %>
+                <p><a href="users/profile/<%=u.id%>">
+                        <%=u.name%>
+                    </a></p>
 
                 <%}%>
 
-            </ul>
-        </div>
+        </section>
+    </div>
 
-
-    </section>
-</body>
-</html>
+<script src="/js/home_post.js" type="text/javascript"></script>
+<script src="https://kit.fontawesome.com/2e15ea0b69.js" crossorigin="anonymous"></script>

@@ -3,7 +3,6 @@ const Post = require('../models/post');
 const { post } = require('../routes/posts');
 
 module.exports.create = async (req, res) => {
-  console.log(req.body.content);
   try {
     const post = await Post.findById(req.body.post);
 
@@ -25,3 +24,23 @@ module.exports.create = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 }
+
+module.exports.destroy=async(req,res)=>{
+  try{
+    let comment = await Comment.findByIdAndDelete(req.params.id);
+    if (!comment) {
+      return res.status(404).send("Post not found");
+    }
+    if(comment.user==req.user.id){
+
+      let postId=comment.post;
+      comment.deleteOne();
+      Post.findByIdAndUpdate(postId,{$pull:{comment:req.params.id}})
+      return res.redirect('back');
+    }
+  }
+  catch(err){
+    console.log(err);
+    return res.redirect('back');
+  }
+}       

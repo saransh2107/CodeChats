@@ -1,22 +1,54 @@
 const User = require('../models/user')
 
-module.exports.profile = async function (req, res) {
-    try {
-        if (req.cookies.user_id) {
-            const user = await User.findById(req.cookies.user_id).exec();
-            if (user) {
-                return res.render('user_profile', { title: "User Profile", user: user });
+module.exports.profile=function(req,res){
+    User.findById(req.params.id)
+    .then(function(user){
+        return res.render('user_profile',{
+            title:'User',
+            profile_user:user
+        });
+    })
+    .catch(function(err){
+        return;
+    })
+}
+module.exports.update = async function (req, res) {
+  if(req.user.id==req.params.id){
+
+
+    try{
+        let user= await User.findById(req.params.id);
+        User.uploadedAvatar(req,res,function(err){
+            if(err){
+                console.log("Multer Error",err);
             }
-            return res.redirect('/users/sign-in');
-        } else {
-            return res.redirect('/users/sign-in');
-        }
-    } catch (err) {
-        // Handle any errors that might occur during the async operations
-        console.error(err);
-        return res.status(500).send('Internal Server Error');
+            user.name=req.body.name;
+            user.email=req.body.email;
+            console.log(req.body.name);
+            if(req.file){
+                console.log(Hello)
+                //this is saving the path of uploded file into the avatar field in user
+                user.avatar=User.avatarPath+'/'+req.file.filename;
+            }
+            user.save();
+            return res.redirect('back');
+        })
+
+
     }
+    catch(err){
+        req.flash('Error',err);
+        return res.redirect('back');
+
+    }
+
+  }
+  else{
+    req.flash('Error in updating',err);
+    return res.status(401).send('Unauthorized');
+  }
 };
+
 //render the sign up page
 module.exports.signUp = function (req, res) {
 
@@ -63,6 +95,7 @@ module.exports.create = async function (req, res) {
 };
 
 module.exports.createSession = function (req, res) {
+    req.flash('success','Logged in Successfully')
     return res.redirect('/');
 }
 module.exports.destroySession=function(req,res){
