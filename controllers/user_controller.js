@@ -26,7 +26,7 @@ module.exports.update = async function (req, res) {
             user.email=req.body.email;
             console.log(req.body.name);
             if(req.file){
-                console.log(Hello)
+                console.log("HEllo")
                 //this is saving the path of uploded file into the avatar field in user
                 user.avatar=User.avatarPath+'/'+req.file.filename;
             }
